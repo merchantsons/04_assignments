@@ -20,9 +20,8 @@ Class Project On (Github) Submission<br>
 
    ༻ Project 5: Hangman Python Project <br>
         ◙ Github -- > https://github.com/merchantsons/hangman.git <br>
-        ◙ Live   -- > https://hangman-sage-theta.vercel.app/ <br>
-            
-    ༻ Project 6: Countdown Timer Python Project <br>
+        ◙ Live   -- > https://hangman-sage-theta.vercel.app/ <br>            
+    ༻ Project 6: Countdown Timer Python Project <br><br>
         ◙ Github -- > https://github.com/merchantsons/countdown.git <br>
         ◙ Live   -- > https://countdown-psi-six.vercel.app/ <br>
 
