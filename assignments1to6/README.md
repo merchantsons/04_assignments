@@ -21,19 +21,20 @@ Class Project On (Github) Submission<br>
    ༻ Project 5: Hangman Python Project <br>
         ◙ Github -- > https://github.com/merchantsons/hangman.git <br>
         ◙ Live   -- > https://hangman-sage-theta.vercel.app/ <br>            
-    ༻ Project 6: Countdown Timer Python Project <br><br>
+   
+   ༻ Project 6: Countdown Timer Python Project <br>
         ◙ Github -- > https://github.com/merchantsons/countdown.git <br>
         ◙ Live   -- > https://countdown-psi-six.vercel.app/ <br>
 
-    ༻ Project 7: Password Generator Python Project <br>
+   ༻ Project 7: Password Generator Python Project <br>
         ◙ Github -- > https://github.com/merchantsons/passgen.git <br>
         ◙ Live   -- > https://passgen-iota.vercel.app/ <br>
 
-    ༻ Project 8: Create a Python Streamlit BMI Calculator Web App in Just 6 Minutes <br>
+   ༻ Project 8: Create a Python Streamlit BMI Calculator Web App in Just 6 Minutes <br>
         ◙ Github -- > https://github.com/merchantsons/bmi.git <br>
         ◙ Live   -- > https://bmi-pyton.streamlit.app/ <br>
 
-     ༻ Project 9: Build a Python Website in 15 Minutes With Streamlit <br>
+   ༻ Project 9: Build a Python Website in 15 Minutes With Streamlit <br>
         ◙ Github -- > https://github.com/merchantsons/streamlit-app.git <br>
         ◙ Live   -- > https://apppythonstnew.streamlit.app/ <br>
 
