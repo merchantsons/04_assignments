@@ -3,8 +3,8 @@ Class Project On (Github) Submission<br>
 ◙ 04_assignments 
 
    ༻ Assignments 00 to 05 https://github.com/panaversity/learn-modern-ai-python/tree/main/PROJECTS/homework_projects <br>
-   ༻ Assignments 1 to 6 https://github.com/panaversity/learn-modern-ai-python/blob/main/PROJECTS/projects_to_be_submitted_by_students/readme.md
-       
+
+   ༻ Assignments 1 to 6 https://github.com/panaversity/learn-modern-ai-python/blob/main/PROJECTS/projects_to_be_submitted_by_students/readme.md <br>
 ꧁༺ 04/04/2025 ༻꧂ 
 
 🅀🅄🄰🅃🄴🅁 3 <br>
