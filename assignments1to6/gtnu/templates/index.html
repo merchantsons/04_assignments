@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Guessing Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        :root {
+            --primary-color: #384155;
+            --secondary-color: #384155;
+            --background-color: #f0f2f5;
+            --text-color: #333;
+            --accent-color: #2e502e;
+            --error-color: #884147;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #384155;
+            color: var(--text-color);
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 90%;
+            justify-self: center;
+            max-width: 600px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+            
+        .head1 {
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            font-size: 3vmin;
+            text-decoration: underline;
+            text-decoration-thickness: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .head2 {
+            color: #ffffff;
+            background-color: #1f522e;
+            font-weight: 600;
+            text-align: center;
+            font-size: 2vmin;
+            margin-bottom: 0.5rem;
+        }
+            
+        .head3 {
+            color: #fff;
+            margin-top: -0.6vmin;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            font-size: 2vmin;
+        }
+            
+        .footer {
+            color: #fff;
+            text-align: center;
+            font-size: 1.5vmin;
+            margin-top: 2rem;
+        }
+        
+        .instructions {
+            margin-top: -1.6rem;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 1.8vmin;
+        }
+        
+        #gameSection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .guess-display {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--primary-color);
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        button:hover {
+            background-color: #445538;
+            transform: scale(1.05);
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+        
+        .too-low {
+            background-color: #ffa500;
+        }
+        
+        .correct {
+            background-color: #2e502e;
+        }
+        
+        .too-high {
+            background-color: #884147;
+        }
+        
+        #reset {
+            background-color: var(--secondary-color);
+            margin-top: 1rem;
+        }
+        
+        #reset:hover {
+            background-color: #445538;
+        }
+        
+        #message {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        #message.correct {
+            background-color: rgba(50, 205, 50, 0.2);
+            color: var(--accent-color);
+            display: block;
+        }
+        
+        #message.too_high {
+            background-color: rgba(255, 71, 87, 0.2);
+            color: var(--error-color);
+            display: block;
+        }
+        
+        #message.too_low {
+            background-color: rgba(255, 165, 0, 0.2);
+            color: #ffa500;
+            display: block;
+        }
+        
+        .attempts {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            height: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .celebrate {
+            animation: celebrate 0.5s ease-in-out;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .instructions {
+                font-size: 0.9rem;
+            }
+            
+            button {
+                font-size: 0.9rem;
+                padding: 0.6rem;
+            }
+            
+            .feedback-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="display: flex; justify-content: center;">
+            <img src="/static/logo.gif" width="200" height="210" alt="GIAIC LOGO" style="display: block;">
+        </div>
+        <div class="head1">PROJECT 3: GUESS THE NUMBER GAME PYTHON PROJECT</div>
+        <div class="head2">(USER VERSION)</div>
+        <div class="head3">FOR GIAIC Q3 - ROLL # 00037391 BY MERCHANTSONS</div>
+        <div class="container">
+            <h1>Computer Guesses Your Number</h1>
+            <p class="instructions">Think of a number between 1 and 100, and I'll try to guess it!</p>
+            
+            <div id="gameSection">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="guess-display" id="computerGuess">Getting ready to guess...</div>
+                
+                <div class="feedback-buttons" id="feedbackControls">
+                    <button class="too-low" id="tooLowBtn">Too Low</button>
+                    <button class="correct" id="correctBtn">Correct!</button>
+                    <button class="too-high" id="tooHighBtn">Too High</button>
+                </div>
+                
+                <div id="message"></div>
+                
+                <div class="attempts" id="attemptsCounter">Attempts: 0</div>
+                
+                <button id="reset">Start New Game</button>
+            </div>
+        </div>
+        <div class="footer">© Copyright 2025 Merchantsons. All rights reserved.</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooLowBtn = document.getElementById('tooLowBtn');
+            const correctBtn = document.getElementById('correctBtn');
+            const tooHighBtn = document.getElementById('tooHighBtn');
+            const resetButton = document.getElementById('reset');
+            const messageEl = document.getElementById('message');
+            const attemptsEl = document.getElementById('attemptsCounter');
+            const progressBar = document.getElementById('progressBar');
+            const container = document.querySelector('.container');
+            const computerGuessEl = document.getElementById('computerGuess');
+            const feedbackControls = document.getElementById('feedbackControls');
+            
+            let attempts = 0;
+            let lowerBound = 1;
+            let upperBound = 100;
+            let currentGuess;
+            
+            function updateProgressBar() {
+                const progress = Math.min(attempts * 10, 100);
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            function displayMessage(message, type) {
+                messageEl.textContent = message;
+                messageEl.style.display = 'block';
+                
+                messageEl.className = 'message';
+                messageEl.classList.add(type);
+                
+                if (type === 'correct') {
+                    container.classList.add('celebrate');
+                    feedbackControls.style.display = 'none';
+                    setTimeout(() => {
+                        container.classList.remove('celebrate');
+                    }, 500);
+                }
+            }
+            
+            function makeGuess() {
+                currentGuess = Math.floor((lowerBound + upperBound) / 2);
+                computerGuessEl.textContent = `Is your number ${currentGuess}?`;
+                attempts++;
+                attemptsEl.textContent = `Attempts: ${attempts}`;
+                updateProgressBar();
+            }
+            
+            function handleTooLow() {
+                if (lowerBound >= upperBound) {
+                    displayMessage("I think there's been a mistake in your feedback. Please reset the game.", 'too_high');
+                    return;
+                }
+                
+                lowerBound = currentGuess + 1;
+                displayMessage(`I'll try a higher number next.`, 'too_low');
+                makeGuess();
+            }
+            
+            function handleTooHigh() {
+                if (lowerBound >= upperBound) {
+                    displayMessage("I think there's been a mistake in your feedback. Please reset the game.", 'too_high');
+                    return;
+                }
+                
+                upperBound = currentGuess - 1;
+                displayMessage(`I'll try a lower number next.`, 'too_high');
+                makeGuess();
+            }
+            
+            function handleCorrect() {
+                displayMessage(`Hooray! I guessed your number (${currentGuess}) in ${attempts} attempts!`, 'correct');
+            }
+            
+            function resetGame() {
+                attempts = 0;
+                lowerBound = 1;
+                upperBound = 100;
+                attemptsEl.textContent = `Attempts: ${attempts}`;
+                messageEl.style.display = 'none';
+                progressBar.style.width = '0%';
+                feedbackControls.style.display = 'flex';
+                makeGuess();
+            }
+            
+            tooLowBtn.addEventListener('click', handleTooLow);
+            correctBtn.addEventListener('click', handleCorrect);
+            tooHighBtn.addEventListener('click', handleTooHigh);
+            resetButton.addEventListener('click', resetGame);
+            
+            // Initialize the game
+            resetGame();
+        });
+    </script>
+</body>
+</html>

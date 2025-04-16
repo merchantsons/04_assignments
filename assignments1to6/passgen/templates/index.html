@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator Python</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+</head>
+<body>
+ <div>
+    <div style="margin-top: -10vmin; justify-self: center;"><img src="/static/logo.gif" width="200" height="210" alt="GIAIC LOGO" style="display: block;"></div>
+    <div class="head1">Project 6: Countdown Timer Python Project</div>
+    <div class="head3">FOR GIAIC Q3 - ROLL # 00037391 BY MERCHANTSONS</div>
+    <div class="container">        
+        <h1>Password Generator</h1>        
+        <form method="POST">
+            <div class="input-group">
+                <label for="length">Password Length:</label>
+                <input type="number" id="length" name="length" min="8" max="50" value="12">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="numbers" name="numbers" checked>
+                <label for="numbers">Include Numbers</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="special" name="special" checked>
+                <label for="special">Include Special Characters</label>
+            </div>
+            
+            <button type="submit">Generate Password</button>
+        </form>
+        
+        {% if password %}
+            <div class="result">
+                <h2>Your Password:</h2>
+                <div class="password-box">
+                    <span>{{ password }}</span>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="footer">© Copyright 2025 Merchantsons. All rights reserved.</div>
+ </div>
+</body>
+</html>
